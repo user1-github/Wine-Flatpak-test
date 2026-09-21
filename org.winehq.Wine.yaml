@@ -29,6 +29,8 @@ cleanup:
 modules:
 
   - name: wine
+    build-options:
+      append-path: /usr/lib/sdk/mingw-w64/bin
     config-opts:
       - --libdir=/app/lib
       - --enable-archs=i386,x86_64
