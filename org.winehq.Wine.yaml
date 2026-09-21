@@ -1,0 +1,48 @@
+id: org.winehq.Wine
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+command: wine
+rename-desktop-file: wine.desktop
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=all
+  - --socket=pulseaudio
+  - --share=network
+  - --allow=multiarch
+  - --allow=devel
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-documents
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-music
+  - --filesystem=xdg-videos
+  - --filesystem=xdg-download
+  - --env=WINEPREFIX=/var/data/wine
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.mingw-w64
+cleanup:
+  - /include
+  - /share/man
+  - '*.a'
+modules:
+
+  - name: wine
+    config-opts:
+      - --libdir=/app/lib
+      - --enable-archs=i386,x86_64
+      - --disable-winemenubuilder
+      - --disable-tests
+    make-install-args:
+      - LDCONFIG=/bin/true
+      - UPDATE_DESKTOP_DATABASE=/bin/true
+      - INSTALL_PROGRAM_FLAGS=-s
+    sources:
+      - type: archive
+        url: https://dl.winehq.org/wine/source/11.0/wine-11.0.tar.xz
+        sha256: c07a6857933c1fc60dff5448d79f39c92481c1e9db5aa628db9d0358446e0701
+      - type: file
+        path: org.winehq.Wine.svg
+    post-install:
+      - install -Dm644 org.winehq.Wine.svg -t /app/share/icons/hicolor/scalable/apps
