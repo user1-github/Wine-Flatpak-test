@@ -4,6 +4,7 @@ runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: wine
 rename-desktop-file: wine.desktop
+rename-icon: wine
 finish-args:
   - --share=ipc
   - --socket=x11
@@ -47,4 +48,4 @@ modules:
       - type: file
         path: org.winehq.Wine.svg
     post-install:
-      - install -Dm644 org.winehq.Wine.svg -t /app/share/icons/hicolor/scalable/apps
+      - install -Dm644 wine.svg -t /app/share/icons/hicolor/scalable/apps
