@@ -46,6 +46,6 @@ modules:
         url: https://dl.winehq.org/wine/source/11.0/wine-11.0.tar.xz
         sha256: c07a6857933c1fc60dff5448d79f39c92481c1e9db5aa628db9d0358446e0701
       - type: file
-        path: org.winehq.Wine.svg
+        path: wine.svg
     post-install:
       - install -Dm644 wine.svg -t /app/share/icons/hicolor/scalable/apps
